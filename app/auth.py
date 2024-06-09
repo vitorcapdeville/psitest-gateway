@@ -18,7 +18,7 @@ async def proxy(request: Request, path: str):
         elif request.method == "PUT":
             data = await request.body()
             headers = dict(request.headers)
-            response = await client.put(url, data=data, headers=headers)
+            response = await client.put(url, data=data, headers=headers, params=request.query_params)
     return response.json()
 
 
@@ -37,11 +37,11 @@ async def verify_email(request: Request):
     return await proxy(request, "verify-email")
 
 
-@router.put("/forgot-password/{email}", tags=["auth"])
-async def forgot_password(request: Request, email: str):
-    return await proxy(request, f"forgot-password/{email}")
+@router.put("/forgot-password", tags=["auth"])
+async def forgot_password(request: Request):
+    return await proxy(request, "forgot-password")
 
 
-@router.put("/reset-password/{reset_password_code}", tags=["auth"])
-async def reset_password(request: Request, reset_password_code: str):
-    return await proxy(request, f"reset-password/{reset_password_code}")
+@router.put("/reset-password", tags=["auth"])
+async def reset_password(request: Request):
+    return await proxy(request, "reset-password")
