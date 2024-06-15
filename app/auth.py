@@ -24,12 +24,12 @@ async def proxy(request: Request, path: str):
     return response.json()
 
 
-@router.post("/login/", tags=["auth"])
+@router.post("/login", tags=["auth"])
 async def login(request: Request):
-    return await proxy(request, "token")
+    return await proxy(request, "login")
 
 
-@router.post("/signup/", tags=["auth"])
+@router.post("/signup", tags=["auth"])
 async def signup(request: Request):
     return await proxy(request, "signup")
 
