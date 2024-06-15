@@ -1,5 +1,5 @@
 import httpx
-from fastapi import APIRouter, Request
+from fastapi import APIRouter, HTTPException, Request
 
 from app.settings import get_settings
 
@@ -19,6 +19,8 @@ async def proxy(request: Request, path: str):
             data = await request.body()
             headers = dict(request.headers)
             response = await client.put(url, data=data, headers=headers, params=request.query_params)
+    if response.status_code != 200:
+        raise HTTPException(status_code=response.status_code, detail=response.text)
     return response.json()
 
 
