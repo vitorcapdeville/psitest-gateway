@@ -1,0 +1,15 @@
+services:
+  gateway:
+    build: .
+    container_name: psitest-gateway
+    command: fastapi dev app --host 0.0.0.0 --port 80
+    ports:
+      - 8000:80
+    volumes:
+      - .:/app
+    networks:
+      - mynetwork
+    env_file: ".env.docker"
+networks:
+  mynetwork:
+    external: true
