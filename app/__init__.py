@@ -39,6 +39,14 @@ async def forgot_password(
 ):
     return await proxy(request, "forgot-password", settings.PSITEST_AUTH)
 
+@app.post("/validate-reset-password-code", tags=["auth"])
+async def validate_reset_password_code(
+    request: Request,
+    settings: Annotated[Settings, Depends(get_settings)],
+):
+    return await proxy(request, "validate-reset-password-code", settings.PSITEST_AUTH)
+
+
 
 @app.put("/reset-password", tags=["auth"])
 async def reset_password(
