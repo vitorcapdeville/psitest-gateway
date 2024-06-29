@@ -16,7 +16,7 @@ async def login(
     return await proxy(request, "login", settings.PSITEST_AUTH)
 
 
-@app.post("/signup", tags=["auth"])
+@app.post("/signup", tags=["cadastro"])
 async def signup(
     request: Request,
     settings: Annotated[Settings, Depends(get_settings)],
@@ -54,3 +54,11 @@ async def reset_password(
     settings: Annotated[Settings, Depends(get_settings)],
 ):
     return await proxy(request, "reset-password", settings.PSITEST_AUTH)
+
+
+@app.get("/users/me", tags=["cadastro"])
+async def get_user_details(
+    request: Request,
+    settings: Annotated[Settings, Depends(get_settings)],
+):
+    return await proxy(request, "users/me", settings.PSITEST_CADASTRO)
