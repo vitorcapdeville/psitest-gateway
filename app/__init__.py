@@ -62,3 +62,11 @@ async def get_user_details(
     settings: Annotated[Settings, Depends(get_settings)],
 ):
     return await proxy(request, "users/me", settings.PSITEST_CADASTRO)
+
+
+@app.post("/questionarios", tags=["questionarios"])
+async def buscar_questioanrios(
+    request: Request,
+    settings: Annotated[Settings, Depends(get_settings)],
+):
+    return await proxy(request, "questionarios", settings.PSITEST_QUESTIONARIOS)
