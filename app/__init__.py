@@ -70,3 +70,20 @@ async def buscar_questioanrios(
     settings: Annotated[Settings, Depends(get_settings)],
 ):
     return await proxy(request, "questionarios", settings.PSITEST_QUESTIONARIOS)
+
+
+@app.get("/respostas", tags=["respostas"])
+async def buscar_questionarios_enviados_por_psicologo(
+    request: Request,
+    settings: Annotated[Settings, Depends(get_settings)],
+):
+    return await proxy(request, "respostas", settings.PSITEST_RESPOSTAS)
+
+
+@app.get("/respostas/{envio_id}", tags=["respostas"])
+async def buscar_respostas_por_envio(
+    request: Request,
+    envio_id: int,
+    settings: Annotated[Settings, Depends(get_settings)],
+):
+    return await proxy(request, f"respostas/{envio_id}", settings.PSITEST_RESPOSTAS)

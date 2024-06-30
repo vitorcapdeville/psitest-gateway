@@ -7,6 +7,7 @@ class Settings(BaseSettings):
     PSITEST_AUTH: str
     PSITEST_CADASTRO: str
     PSITEST_QUESTIONARIOS: str
+    PSITEST_RESPOSTAS: str
 
     model_config = SettingsConfigDict(env_file=".env")
 
