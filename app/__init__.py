@@ -95,3 +95,19 @@ async def enviar_questionario(
     settings: Annotated[Settings, Depends(get_settings)],
 ):
     return await proxy(request, "envio", settings.PSITEST_RESPOSTAS)
+
+
+@app.get("/envios", tags=["respostas"])
+async def buscar_envios_por_email(
+    request: Request,
+    settings: Annotated[Settings, Depends(get_settings)],
+):
+    return await proxy(request, "envios", settings.PSITEST_RESPOSTAS)
+
+
+@app.post("/responder", tags=["respostas"])
+async def responder_questionario(
+    request: Request,
+    settings: Annotated[Settings, Depends(get_settings)],
+):
+    return await proxy(request, "responder", settings.PSITEST_RESPOSTAS)
