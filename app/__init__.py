@@ -87,3 +87,11 @@ async def buscar_respostas_por_envio(
     settings: Annotated[Settings, Depends(get_settings)],
 ):
     return await proxy(request, f"respostas/{envio_id}", settings.PSITEST_RESPOSTAS)
+
+
+@app.post("/envio", tags=["respostas"])
+async def enviar_questionario(
+    request: Request,
+    settings: Annotated[Settings, Depends(get_settings)],
+):
+    return await proxy(request, "envio", settings.PSITEST_RESPOSTAS)
