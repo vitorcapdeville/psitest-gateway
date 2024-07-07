@@ -5,8 +5,6 @@ from app.utils import proxy
 
 app = FastAPI()
 
-SERVICE_URL = get_settings().PSITEST_AUTH
-
 
 @app.post("/login", tags=["auth"])
 async def login(

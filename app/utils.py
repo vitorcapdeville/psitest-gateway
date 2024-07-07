@@ -3,7 +3,7 @@ from fastapi import HTTPException, Request
 
 async def proxy(request: Request, path: str, service_url: str):
     url = f"{service_url}/{path}"
-    async with httpx.AsyncClient() as client:
+    async with httpx.AsyncClient(timeout=None) as client:
         headers = dict(request.headers)
         data = None
         if request.method in ["POST", "PUT"]:
