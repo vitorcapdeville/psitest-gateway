@@ -19,6 +19,7 @@ async def signup(
     request: Request,
     settings: Annotated[Settings, Depends(get_settings)],
 ):
+    print(settings.PSITEST_CADASTRO)
     return await proxy(request, "signup", settings.PSITEST_CADASTRO)
 
 

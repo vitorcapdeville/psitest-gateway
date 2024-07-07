@@ -1,6 +1,6 @@
 from functools import lru_cache
 
-from pydantic_settings import BaseSettings, SettingsConfigDict
+from pydantic_settings import BaseSettings
 
 
 class Settings(BaseSettings):
@@ -8,8 +8,6 @@ class Settings(BaseSettings):
     PSITEST_CADASTRO: str
     PSITEST_QUESTIONARIOS: str
     PSITEST_RESPOSTAS: str
-
-    model_config = SettingsConfigDict(env_file=".env")
 
 
 @lru_cache
